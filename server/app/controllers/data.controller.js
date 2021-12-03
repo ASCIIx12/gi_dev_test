@@ -55,6 +55,9 @@ const getByIdCode = async (req, res) => {
 // stream download a file then process and add data to db
 const upload = (req, res) => {
     const uploadsDir = path.join(__dirname, '../uploads')
+
+    if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir)
+
     const filePath = path.join(uploadsDir, `dataFile_${uploadCount++}`)
     const stream = fs.createWriteStream(filePath)
 
