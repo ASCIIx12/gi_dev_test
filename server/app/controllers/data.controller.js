@@ -167,7 +167,7 @@ const processData = (file) => {
 
                     // bulk add data to database when array reaches 50000 entries
                     if (bulk.length === 50000) 
-                        await Data.bulkCreate(bulk, { ignoreDuplicates: true })
+                        Data.bulkCreate(bulk, { ignoreDuplicates: false })
                                 .catch(err => {
                                     reject(err)
                                 })
@@ -181,7 +181,7 @@ const processData = (file) => {
         lr.on('close', async () => {
 
             // bulk add left over data from array
-            await Data.bulkCreate(bulk, { ignoreDuplicates: true })
+            Data.bulkCreate(bulk, { ignoreDuplicates: false })
                     .catch(err => {
                         reject(err)
                     })
